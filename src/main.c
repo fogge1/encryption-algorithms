@@ -8,10 +8,14 @@ int main(int argc, char *argv[]) {
         printf("%s\n", "Give a message to be encrypted");
         return EXIT_FAILURE;
     }
-    // First argument equals message to be encrypted
+    
     char *msg = argv[1];
 
-    rot(msg);
+    char *decrypt = encrypt_rot13(msg);
+    printf("%s\n", decrypt);
+
+    decrypt = decrypt_rot13(decrypt);
+    printf("%s\n", decrypt);
 
     return EXIT_SUCCESS;
 }
