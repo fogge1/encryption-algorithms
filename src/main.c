@@ -3,6 +3,7 @@
 #include <string.h>
 #include "rot13.h"
 #include "rsa.h"
+#include "caesar.h"
 
 int main(int argc, char *argv[]) {
     
@@ -14,7 +15,8 @@ int main(int argc, char *argv[]) {
     char *msg = argv[1];
 
     rot13(msg);
-    rsa(msg);
-
+    caesar(msg, 14);
+    //rsa(msg);
+    
     return EXIT_SUCCESS;
 }

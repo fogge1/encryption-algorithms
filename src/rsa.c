@@ -48,6 +48,27 @@ long choose_e(long tn) {
     return -1;
 }
 
+void generate_keys(int p, int q, long *n, long *e, long *d) {
+    *n = p*q;
+    long tn = (p-1)*(q-1); // totient of n
+    *e = choose_e(tn);
+    *d = modular_inverse(*e, tn);
+}
+
+// int isPrime(long p) {
+    
+
+// }
+
+// long generate_prime(long min, long max) {
+//     while (1) {
+//         long p = (rand() % (max-min+1)+min);
+//         if (is_prime(p)) {
+//             return p;
+//         }
+//     }
+// }
+
 long int mod_pow(long base, long exponent, long mod) {
     long x = 1;
 
@@ -83,18 +104,13 @@ int* decrypt_rsa(int* encrypt, long d, long n, int len) {
     return encrypt;
 }
 
-void generate_keys(int p, int q, long *n, long *e, long *d) {
-    *n = p*q;
-    long tn = (p-1)*(q-1); // totient of n
-    *e = 17;//choose_e(tn);
-    *d = modular_inverse(*e, tn);
-}
+
 
 void rsa(char *msg) {
     printf("Encrypting with RSA...");
     printf("Generating keys...\n");
-    int p = 61;
-    int q = 53;
+    int p = 101;
+    int q = 103;
     long n, e, d; 
     generate_keys(p, q, &n, &e, &d);
     
