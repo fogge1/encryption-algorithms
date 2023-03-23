@@ -7,13 +7,9 @@ The ROT13 encryption algorithm works by replacing a character
 with the 13th letter that comes after it in the alphabet.
 
 a b c d e f g h i j k l m
-
 ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
-∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ 
-
+∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨ ∨
 n o p q r s t u v w x y z
-
-
 
 */
 
