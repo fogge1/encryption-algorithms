@@ -62,27 +62,46 @@ long int mod_pow(long base, long exponent, long mod) {
     return x%mod;
 }
 
-int* encrypt_rsa(char *msg, long e, long n, int *encrypted) {
-    int len = strlen(msg)+1;
-    
-
+int* encrypt_rsa(char *msg, long e, long n, int *out) {
+    printf("Encrypted: ");
     for (int i = 0; msg[i] != '\0'; i++) {
-        encrypted[i] = mod_pow(msg[i], e, n);
-        printf("%d ", encrypted[i]);
+        out[i] = mod_pow(msg[i], e, n);
+        printf("%d ", out[i]);
     } 
-    encrypted[len] = 0;
     printf("\n");
-    return encrypted;
+    return out;
 }
 
-int* decrypt_rsa(int* encrypt, long d, long n) {
-    int *out = encrypt;
-    
-    for (int i = 0; encrypt[i] !=0; i++) {
-        out[i] = mod_pow(encrypt[i], d, n);
-        printf("%c", out[i]);
+int* decrypt_rsa(int* encrypt, long d, long n, int len) {
+    printf("Decrypted: ");
+    for (int i = 0; i < len; i++) {
+        encrypt[i] = mod_pow(encrypt[i], d, n);
+        printf("%c", encrypt[i]);
     }
     printf("\n");
 
-    return out;
+    return encrypt;
+}
+
+void generate_keys(int p, int q, long *n, long *e, long *d) {
+    *n = p*q;
+    long tn = (p-1)*(q-1); // totient of n
+    *e = 17;//choose_e(tn);
+    *d = modular_inverse(*e, tn);
+}
+
+void rsa(char *msg) {
+    printf("Encrypting with RSA...");
+    printf("Generating keys...\n");
+    int p = 61;
+    int q = 53;
+    long n, e, d; 
+    generate_keys(p, q, &n, &e, &d);
+    
+    printf("Public key: (%li, %li)\n", e, n);
+    printf("Private key: (%li, %li)\n", d, n);
+    int len = strlen(msg);
+    int out[len];
+    int *encrypted = encrypt_rsa(msg, e, n, out);
+    decrypt_rsa(encrypted, d, n, len);
 }

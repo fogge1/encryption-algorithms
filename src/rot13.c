@@ -34,3 +34,10 @@ char* encrypt_rot13(char *msg) {
 char* decrypt_rot13(char *encrypted) {
     return encrypt_rot13(encrypted);
 }
+
+void rot13(char *msg) {
+    printf("ENCRYPTING WITH ROT13...\n");
+    printf("ENCRYPTED msg: %s\n", encrypt_rot13(msg));
+    printf("DECRYPTED: %s\n", decrypt_rot13(msg));
+    printf("\n");
+}
