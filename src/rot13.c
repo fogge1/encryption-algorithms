@@ -18,10 +18,12 @@ char* encrypt_rot13(char *msg) {
 
     for (int i = 0; msg[i] != '\0'; i++) {
         char c = msg[i];
-      
+
+        // if it is in the range of m <= c < z then wrap around by subtracting
         if (('z' >= c && c > 'm' ) || ('Z' >= c && c > 'M')) {
             c -= 13;
         }
+        // if it is in the range of a <= c < m then wrap around by adding
         else if (('m' >= c && c >= 'a' ) || ('M' >= c && c >= 'A')){
             c += 13;
         }
