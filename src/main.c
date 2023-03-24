@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     char *msg = argv[1];
 
     rot13(msg);
-    caesar(msg, 14);
+    caesar(msg, 3);
     //rsa(msg);
     
     return EXIT_SUCCESS;
