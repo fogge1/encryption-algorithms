@@ -55,14 +55,34 @@ void generate_keys(int p, int q, long *n, long *e, long *d) {
     *d = modular_inverse(*e, tn);
 }
 
-// int isPrime(long p) {
-    
+// int *firstPrimes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
+//     67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+//     157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241,
+//     251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349,
+//     353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449,
+//     457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569,
+//     571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661,
+//     673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787,
+//     797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907,
+//     911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997, 0
+// };
 
+
+
+// int isPrime(int p) {
+//     for (int i = 0; firstPrimes[i] != 0; i++) {
+//         if (p % firstPrimes[i] == 0) {
+//             return 0;
+//         }
+//     }
+
+//     if(rabin_miller(p)) return 1;
+//     return 0;
 // }
 
-// long generate_prime(long min, long max) {
+// int generate_prime(int min, int max) {
 //     while (1) {
-//         long p = (rand() % (max-min+1)+min);
+//         int p = (rand() % (max-min+1)+min);
 //         if (is_prime(p)) {
 //             return p;
 //         }
@@ -104,13 +124,11 @@ int* decrypt_rsa(int* encrypt, long d, long n, int len) {
     return encrypt;
 }
 
-
-
 void rsa(char *msg) {
-    printf("Encrypting with RSA...");
+    printf("Encrypting with RSA...\n");
     printf("Generating keys...\n");
-    int p = 101;
-    int q = 103;
+    int p = 6947;//generate_prime(0,32767);
+    int q = 4409;//generate_prime(0,32767);
     long n, e, d; 
     generate_keys(p, q, &n, &e, &d);
     
@@ -120,4 +138,5 @@ void rsa(char *msg) {
     int out[len];
     int *encrypted = encrypt_rsa(msg, e, n, out);
     decrypt_rsa(encrypted, d, n, len);
+    printf("\n");
 }

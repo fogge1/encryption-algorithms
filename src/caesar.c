@@ -27,4 +27,5 @@ void caesar(char *msg, int r) {
     printf("ENCRYPTED: %s\n", msg);
     decrypt_caesar(msg, r);
     printf("DECRYPTED: %s\n", msg);
+    printf("\n");
 }

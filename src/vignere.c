@@ -28,6 +28,7 @@ void decrypt_vigenere(char *msg, char *key) {
 
 void vignere(char *msg) {
     char *key = "MATH";
+    printf("ENCRYPTING WITH VIGNERE, KEY=%s\n", key);
     encrypt_vigenere(msg, key);
     printf("ENCRYPTED: %s\n", msg);
 
