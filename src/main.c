@@ -4,6 +4,7 @@
 #include "rot13.h"
 #include "rsa.h"
 #include "caesar.h"
+#include "vignere.h"
 
 int main(int argc, char *argv[]) {
     
@@ -14,9 +15,10 @@ int main(int argc, char *argv[]) {
     
     char *msg = argv[1];
 
-    rot13(msg);
+    /*rot13(msg);
     caesar(msg, 3);
-    //rsa(msg);
+    rsa(msg); */
+    vignere(msg);
     
     return EXIT_SUCCESS;
 }
